@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 
 /* Define a structure for a sparse matrix entry */
 struct Entry 
