@@ -1,62 +1,39 @@
-#include<stdio.h>
 #include<stdlib.h>
-
-/* Define a structure for a sparse matrix entry */
-struct Entry 
+struct sparse
 {
-  int row;
-  int col;
-  int value;
+int row;
+int col;
+int val;
 };
-
-/* Define a structure for a sparse matrix */
-struct SparseMatrix 
+void create();
+int main()
 {
-  int numRows;
-  int numCols;
-  int numNonZero;
-  struct Entry entries[];
-};
-
-/* Function to create a sparse matrix */
-struct SparseMatrix createSparseMatrix(int numRows, int numCols, int numNonZero) 
-{
-  /* Allocate memory for the sparse matrix */
-  struct SparseMatrix sm;
-  sm.numRows = numRows;
-  sm.numCols = numCols;
-  sm.numNonZero = numNonZero;
-  sm.entries = malloc(numNonZero * sizeof(struct Entry));
-
-  /* Read in the entries for the sparse matrix */
-  for (int i = 0; i < numNonZero; i++) 
-  {
-    scanf("%d%d%d", &sm.entries[i].row, &sm.entries[i].col, &sm.entries[i].value);
-  }
-
-  return sm;
+    create();
 }
-
-/* Function to print a sparse matrix */
-void printSparseMatrix(struct SparseMatrix sm) 
+void create()
 {
-  printf("Number of rows: %d\n", sm.numRows);
-  printf("Number of columns: %d\n", sm.numCols);
-  printf("Number of non-zero entries: %d\n", sm.numNonZero);
-  printf("Entries:\n");
-  for (int i = 0; i < sm.numNonZero; i++) 
-  {
-    printf("%d %d %d\n", sm.entries[i].row, sm.entries[i].col, sm.entries[i].value);
-  }
+    struct sparse s[10];
+int m,n,value,i,j;
+printf("enter the values of m and n:\n");
+scanf("%d%d",&m,&n);
+s[0].row=m;
+s[0].col=n;
+s[0].val=6;
+for(i=0;i<m;i++)
+{
+for(j=0;j<n;j++)
+{
+    printf("enter the value\n");
+scanf("%d",&value);
+if(value==0)
+continue;
+s[j].row=i;
+s[j].col=j;
+s[j].val=value;
 }
-
-int main() 
+}
+for(i=1;i<=s[0].val;i++)
 {
-  /* Create a sparse matrix */
-  struct SparseMatrix sm = createSparseMatrix(3, 4, 6);
-
-  /* Print the sparse matrix */
-  printSparseMatrix(sm);
-
-  return 0;
+    printf("%d\t%d\t%d\t",s[i].row,s[i].col,s[i].val);
+}
 }
