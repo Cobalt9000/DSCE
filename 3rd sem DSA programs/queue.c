@@ -9,7 +9,8 @@ int main()
 {
  while(c!=4)
  {
-   printf("\nenter the choice: ");
+   printf(" 1. Insert() /n 2. Deleted() /n 3. Display() /n 4. Exit()); 
+   printf("/nenter the choice: ");
    scanf("%d",&choice);
    switch (choice)
    {
