@@ -4,12 +4,12 @@
 #define size 20
 #include <string.h>
 
-int top = -1, i;
+int top = 0 i;
 char input[size], stack[size],ch;
 
 void push(char ch)
 {
-    stack[++top] = ch;
+    stack[top++]= ch;
 }
 
 char pop()
