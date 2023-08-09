@@ -1,4 +1,4 @@
-package Single_Inheritance;
+package Multi_Inheritance;
 
 //Child.java
 public class Child extends Parent {

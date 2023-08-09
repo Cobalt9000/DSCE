@@ -1,6 +1,6 @@
-package Single_Inheritance;
+package Multi_Inheritance;
 
-import Multi_Inheritance.Grandparent;
+
 
 //Parent.java
 public class Parent extends Grandparent {
