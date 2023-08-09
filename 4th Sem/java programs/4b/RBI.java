@@ -1,7 +1,7 @@
-package Java4b_Default;
+package JAva4b_private;
 
 public class RBI {
-	public void saving () {
+	private void saving() {
 		System.out.println("Saving");
 	}
 
