@@ -1,7 +1,7 @@
-package JAva4b_private;
+package JAVA4b_protected;
 
 public class RBI {
-	private void saving() {
+	protected void saving () {
 		System.out.println("Saving");
 	}
 

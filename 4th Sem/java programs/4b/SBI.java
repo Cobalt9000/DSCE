@@ -1,9 +1,9 @@
-package JAva4b_private;
-
+package JAVA4b_protected;
+import JAVA4b_protected.*;
 public class SBI extends RBI{
 	public static void main(String args[]) {
-		SBI s=new SBI();
-		s.saving();
+		SBI sb=new SBI();
+		sb.saving();
 	}
 
 }
