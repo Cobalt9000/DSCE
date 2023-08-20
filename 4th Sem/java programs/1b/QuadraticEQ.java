@@ -31,8 +31,8 @@ public class QuadraticEQ
             else
             {
                 System.out.println("The solutions are real and distinct");
-                double x1 = (-b-z)/(2*a);
-                double x2 = (-b+z)/(2*a);
+                double x1 = (-b-mathsqrt(z)/(2*a);
+                double x2 = (-b+mathsqrt(z)/(2*a);
                 System.out.println(x1);
                 System.out.println(x2);
             }
