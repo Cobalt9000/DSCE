@@ -1,0 +1,27 @@
+import pandas as pd
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+from sklearn.metrics import silhouette_score
+
+data = pd.read_csv('kmeas_clustering_data.csv')
+
+## Find out number clusters exist in the data
+Sum_of_squared_distances = []
+K = range(2,5)
+for k in K:
+    km = KMeans(n_clusters=k)
+    km = km.fit(data)
+    Sum_of_squared_distances.append(km.inertia_)
+    
+plt.plot(K, Sum_of_squared_distances, 'bx-')
+plt.show()
+
+## Train the model and save the output cluster labels to a csv file
+model = KMeans(n_clusters=3, random_state=42) 
+data_kmeans = model.fit(data)
+data['cluster_labels'] = data_kmeans.labels_
+data.to_csv('cluster_labels.csv')
+
+## Silhoute coefficient for clusters
+score = silhouette_score(data, model.labels_, metric='euclidean')
+print('Silhouetter Score: %.3f' % score)

@@ -1,0 +1,23 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.tree import plot_tree
+from sklearn.metrics import classification_report, confusion_matrix
+
+
+data = pd.read_csv('CART_Iris_data.csv')
+model = DecisionTreeClassifier(max_depth=1, min_samples_leaf=3)
+# model = DecisionTreeClassifier()
+model = model.fit(data[['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm']], data.Species)
+
+y = data['Species']
+X = data.drop(['Species'], axis=1)
+dt_feature_names = list(X.columns)
+dt_target_names = [str(s) for s in y.unique()]
+plt.figure(figsize = (10,8))
+plot_tree(model,feature_names = dt_feature_names, class_names = dt_target_names, filled = True)
+
+y_pred = model.predict(X)
+print(confusion_matrix(y, y_pred))
+print(classification_report(y, y_pred))

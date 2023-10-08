@@ -1,0 +1,25 @@
+##Linear Regression
+#Import Libraries
+import pandas as pd
+import statsmodels.api as sm
+import numpy as np
+
+#Import Data
+data = pd.read_csv('linear_regression_data.csv')
+data.info()
+
+#Split Dependent and Independent
+X = data[['youtube','facebook','newspaper']] 
+Y = data['sales']
+
+#Train Model
+X = sm.add_constant(X) 
+model = sm.OLS(Y, X).fit()
+print_model = model.summary()
+print(print_model)
+
+#Sales Prediction
+sales_pred = model.predict(X) 
+
+#MAPE
+np.mean(np.abs((Y - sales_pred) / sales_pred)) * 100
