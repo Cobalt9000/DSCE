@@ -1,0 +1,6 @@
+startCDH.sh
+jps
+nano aiml.txt
+hadoop fs -put aiml.txt aiml.txt
+hadoop jar p1.jar WCDriver aiml.txt WCOutput
+hadoop fs -cat WCOutput/part-00000 
