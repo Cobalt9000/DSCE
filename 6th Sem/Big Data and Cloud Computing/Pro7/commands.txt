@@ -1,0 +1,9 @@
+hdfs dfs -mkdir new_dir
+
+hdfs dfs -put ai.txt /user/hadoop/new_dir
+
+hdfs dfs -cp /user/hadoop/new_dir /user/hadoop/
+
+hdfs dfs -get /user/hadoop/new_dir/ai.txt ai1.txt
+
+hdfs dfs -rm /user/hadoop/new_dir/ai.txt
