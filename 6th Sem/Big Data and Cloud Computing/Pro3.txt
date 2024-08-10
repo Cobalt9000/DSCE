@@ -1,0 +1,35 @@
+#include <stdio.h> 
+#include <unistd.h> 
+#include <stdlib.h> 
+#include <string.h> 
+float get_cpu_usage() { 
+long double a[4], b[4], loadavg; 
+FILE *fp; 
+fp = fopen("/proc/stat","r"); 
+fscanf(fp, "%*s %Lf %Lf %Lf %Lf", &a[0], &a[1], &a[2], &a[3]); 
+fclose(fp); 
+sleep(1); 
+fp = fopen("/proc/stat","r"); 
+fscanf(fp, "%*s %Lf %Lf %Lf %Lf", &b[0], &b[1], &b[2], &b[3]); 
+fclose(fp); 
+loadavg = ((b[0]+b[1]+b[2]) - (a[0]+a[1]+a[2])) / ((b[0]+b[1]+b[2]+b[3]) - (a[0]+a[1]+a[2]+a[3])); 
+return loadavg; 
+} 
+int main() { 
+FILE *log_file; 
+char *filename = "cpu_usage.log"; 
+log_file = fopen(filename, "w"); 
+if (log_file == NULL) { 
+perror("Failed to open log file"); 
+return EXIT_FAILURE; 
+} 
+for (int i = 0; i < 10; ++i) { 
+float usage = get_cpu_usage(); 
+fprintf(log_file, "CPU Usage: %.2f%%\n", usage * 100); 
+printf("Logged CPU Usage: %.2f%%\n", usage * 100);
+sleep(5); // Sleep for 5 seconds 
+} 
+fclose(log_file); 
+printf("CPU usage logging completed.\n"); 
+return 0; 
+} 

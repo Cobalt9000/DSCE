@@ -1,0 +1,35 @@
+pip install pyspark
+
+
+
+from pyspark.sql import SparkSession
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType
+
+# Initialize SparkSession
+spark = SparkSession.builder\
+.appName("FIFADataFrameExample1")\
+.getOrCreate()
+
+# Define the schema for the FIFA dataset
+schema = StructType([
+StructField("team", StringType(), True),
+StructField("team_code", StringType(), True),
+StructField("association", StringType(), True),
+StructField("rank", IntegerType(), True),
+StructField("previous_rank", IntegerType(), True),
+StructField("points", FloatType(), True),
+StructField("previous_points", FloatType(), True)
+])
+
+# Load FIFA dataset from CSV
+file_path = "fifa_ranking_2022-10-06.csv"
+fifa_df = spark.read.csv("fifa_ranking_2022-10-06.csv", header=True, schema=schema)
+
+# Show DataFrame
+fifa_df.show();
+
+# Select and show specific columns
+fifa_df.select("previous_points").show()
+
+# Stop SparkSession
+spark.stop()
